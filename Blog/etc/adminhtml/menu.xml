@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="GiangVu_Blog::level1" 
+		  title="GiangVu" 
+		  translate="title" 
+		  module="GiangVu_Blog" 
+		  parent="Magento_Backend::content" 
+		  sortOrder="50" 
+		  dependsOnModule="GiangVu_Blog" 
+		  resource="GiangVu_Blog::level1"/>
+		  
+		<add id="GiangVu_Blog::level2" 
+		  title="Blog" 
+		  translate="title" 
+		  module="GiangVu_Blog" 
+		  parent="GiangVu_Blog::level1" 
+		  sortOrder="10" 
+		  dependsOnModule="GiangVu_Blog" 
+		  action="blog/index" 
+		  resource="GiangVu_Blog::level1"/>
+		          
+		<add id="GiangVu_Blog::blog" 
+		  title="Blog" 
+		  translate="title" 
+		  module="GiangVu_Blog" 
+		  sortOrder="51" 
+		  dependsOnModule="GiangVu_Blog" 
+		  resource="GiangVu_Blog::blog"/>
+		  
+		<add id="GiangVu_Blog::post" 
+		  title="Blog" 
+		  translate="title" 
+		  module="GiangVu_Blog" 
+		  parent="GiangVu_Blog::blog" 
+		  sortOrder="10" 
+		  dependsOnModule="GiangVu_Blog" 
+		  action="blog/post" 
+		  resource="GiangVu_Blog::post"/>
+		
+		<add id="GiangVu_Blog::blog_config" 
+		  title="Configuration" 
+		  translate="title" 
+		  module="GiangVu_Blog" 
+		  parent="GiangVu_Blog::blog" 
+		  sortOrder="10" 
+		  dependsOnModule="GiangVu_Blog" 
+		  action="adminhtml/system_config/edit/section/blog" 
+		  resource="GiangVu_Blog::blog_config"/>
+	</menu>
+</config>

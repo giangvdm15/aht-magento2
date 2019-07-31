@@ -1,0 +1,38 @@
+<table class="table table-bordered table-striped table-hover table-reponsive scroll">
+    <thead>
+    	<!-- <a href="<?php echo $block->getBaseUrl(); ?>blog/index/create" class="btn btn-primary btn-xs pull-right">
+    		Create New Post
+    	</a> -->
+	  	<tr>
+		    <th>Id</th>
+		    <th>Name</th>
+		    <th>Url Key</th>
+		    <th>Image</th>
+<!-- 		    <th>Content</th> -->
+		    <th>Status</th>
+		    <th>Creared At</th>
+		    <th>Updated At</th>
+		    <th></th>
+		    <th></th>
+	    </tr>
+    </thead>
+    <?php
+    
+    $products = $block->getProducts();
+    
+    foreach ($products as $product) {
+    	echo "<tr style=\"border: 1px solid #dddddd; text-align: left; padding: 8px;\">";
+    	echo "<td>".$product->getId()."</td>";
+    	echo "<td>".$product->getName()."</td>";
+    	echo "<td>".$product->getUrlKey()."</td>";
+    	echo "<td><img src=" . $block->getProductImage($product) . " /></td>";
+//     	echo "<td>".$product->getContent()."</td>";
+    	echo "<td>".$product->getStatus()."</td>";
+    	echo "<td>".$product->getCreatedAt()."</td>";
+    	echo "<td>".$product->getUpdatedAt()."</td>";
+    	echo "<td><a title='Edit product' href=" . $block->getBaseUrl() . "productlist/index/edit?post_id=" . $product->getId() . ">Edit</a></td>";
+    	echo "<td><a title='Delete product' href=" . $block->getBaseUrl() . "productlist/index/edit?delete_id=" . $product->getId() . ">Delete</a></td>";
+    	echo "</tr>";
+    }
+    ?>
+</table>

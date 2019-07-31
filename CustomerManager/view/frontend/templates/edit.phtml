@@ -1,0 +1,25 @@
+<?php
+$customer = $block->getCustomer();
+?>
+<div class="container">
+    <form method="POST" action="/customermanager/index/save">
+    	<div class="form-group">
+            <label for="customer-name"></label>
+            <input type="text" class="form-control" id="customer-name" name="customer-name" value="<?php if (isset($customer['entity_id'])) echo $customer->getName();?>" disabled>
+        </div>
+    	<div class="form-group">
+            <label for="new-password">New Password</label>
+            <input type="text" class="form-control" id="new-password" placeholder="Enter new password" name="new-password" required>
+        </div>
+        <div class="form-group">
+            <label for="confirm-password">Confirm new Password</label>
+            <input type="text" class="form-control" id="confirm-password" placeholder="Re-enter new password to confirm" name="confirm-password" required>
+        </div>
+        <br>
+    	<div class="form-group">
+    		<button type="submit" class="btn btn-primary" name="changepasswordbtn" value="<?php if (isset($customer['entity_id'])) echo $customer->getId();?>">
+    			Change Password
+    		</button>
+    	</div>
+    </form>
+</div>
