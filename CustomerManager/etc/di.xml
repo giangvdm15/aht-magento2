@@ -1,16 +1,13 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <preference for="Blog\Post\Api\ContactRepositoryInterface" type="Blog\Post\Model\ContactRepository"/>
-    <preference for="Blog\Post\Api\Data\ContactInterface" type="Blog\Post\Model\Contact"/>
-    <preference for="Blog\Post\Api\Data\ContactSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
-    <virtualType name="ContactsGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+    <virtualType name="CustomersGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
         <arguments>
-            <argument name="collection" xsi:type="object" shared="false">Blog\Post\Model\ResourceModel\Contact\Collection</argument>
-            <argument name="filterPool" xsi:type="object" shared="false">ContactsGridFilterPool</argument>
+            <argument name="collection" xsi:type="object" shared="false">Magento\Customer\Model\ResourceModel\Customer\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">CustomersGridFilterPool</argument>
         </arguments>
     </virtualType>
 
-    <virtualType name="ContactsGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+    <virtualType name="CustomersGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
         <arguments>
             <argument name="appliers" xsi:type="array">
                 <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
@@ -22,15 +19,18 @@
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">
-                <item name="post_test_listing_data_source" xsi:type="string">Blog\Post\Model\ResourceModel\Contact\Grid\Collection</item>
+                <item name="create_form_data_source" xsi:type="string">GiangVu\CustomerManager\Model\ResourceModel\Contact\Grid\Collection</item>
+                <item name="edit_form_data_source" xsi:type="string">GiangVu\CustomerManager\Model\ResourceModel\Contact\Grid\Collection</item>
+                <item name="customermanager_listing_data_source" xsi:type="string">GiangVu\CustomerManager\Model\ResourceModel\Contact\Grid\Collection</item>
+                <item name="changepassword_form_data_source" xsi:type="string">GiangVu\CustomerManager\Model\ResourceModel\Contact\Grid\Collection</item>
             </argument>
         </arguments>
     </type>
 
-    <virtualType name="Blog\Post\Model\ResourceModel\Contact\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+    <virtualType name="GiangVu\CustomerManager\Model\ResourceModel\Contact\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
         <arguments>
-            <argument name="mainTable" xsi:type="string">aht_blog_contact</argument>
-            <argument name="resourceModel" xsi:type="string">Blog\Post\Model\ResourceModel\Contact\Collection</argument>
+            <argument name="mainTable" xsi:type="string">customer_entity</argument>
+            <argument name="resourceModel" xsi:type="string">Magento\Customer\Model\ResourceModel\Customer\Collection</argument>
         </arguments>
     </virtualType>
 </config>

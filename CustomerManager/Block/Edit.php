@@ -13,10 +13,10 @@ class Edit extends \Magento\Framework\View\Element\Template
         //         \Magento\Customer\Model\ResourceModel\CustomerRepository $customerRepositoryInterface,
         \Magento\Framework\Registry $coreRegistry
     ) {
-            parent::__construct($context);
-            $this->customerFactory = $customerFactory;
-            //         $this->customerRepository = $customerRepositoryInterface;
-            $this->_coreRegistry = $coreRegistry;
+        parent::__construct($context);
+        $this->customerFactory = $customerFactory;
+        //         $this->customerRepository = $customerRepositoryInterface;
+        $this->_coreRegistry = $coreRegistry;
     }
     
     public function getCustomer()

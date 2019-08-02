@@ -1,6 +1,6 @@
 <?php
 namespace GiangVu\CustomerManager\Block\Adminhtml\MyCustomer\Edit;
-// use Magento\Search\Controller\RegistryConstants;
+use Magento\Search\Controller\RegistryConstants;
 
 class GenericButton
 {
@@ -17,8 +17,8 @@ class GenericButton
     
     public function getId()
     {
-        $contact = $this->registry->registry('contact');
-        return $contact ? $contact->getId() : null;
+        $customer = $this->registry->registry('customer');
+        return $customer ? $customer->getId() : null;
     }
     
     public function getUrl($route = '', $params = [])

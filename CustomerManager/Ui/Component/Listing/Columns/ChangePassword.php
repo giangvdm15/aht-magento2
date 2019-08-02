@@ -53,7 +53,7 @@ class ChangePassword extends Column
 //                 $item[$fieldName . '_formaction'] = $this->urlBuilder->getUrl('grid/customer/sendmail');
 
                 // so use anchor links instead
-                $item[$this->getData('name')]['edit'] = [
+                $item[$this->getData('name')]['changepassword'] = [
                     'href' => $this->urlBuilder->getUrl('customermanager/index/changepassword', ['id' => $item['entity_id']]),
                     'label' => __('Change Password'),
                     'hidden' => false

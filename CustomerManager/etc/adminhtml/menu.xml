@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>	
+		<add id="GiangVu_CustomerManager::customermanager" 
+      	title="Giang's CustomerManager" 
+      	translate="title" 
+      	module="GiangVu_CustomerManager" 
+      	sortOrder="51" 
+      	dependsOnModule="GiangVu_CustomerManager" 
+      	resource="GiangVu_CustomerManager::customermanager"/>
+
+        <add id="GiangVu_CustomerManager::customer" 
+      	title="All Customers" 
+      	translate="title" 
+      	module="GiangVu_CustomerManager" 
+      	parent="GiangVu_CustomerManager::customermanager" 
+      	sortOrder="10" 
+      	dependsOnModule="GiangVu_CustomerManager" 
+      	action="customermanager/index/index" 
+      	resource="GiangVu_CustomerManager::customer"/>
+
+        <add id="GiangVu_CustomerManager::customer_config" 
+      	title="Configuration" 
+      	translate="title" 
+      	module="GiangVu_CustomerManager" 
+      	parent="GiangVu_CustomerManager::customermanager" 
+      	sortOrder="10" 
+      	dependsOnModule="GiangVu_CustomerManager" 
+      	action="adminhtml/system_config/edit/section/post" 
+      	resource="GiangVu_CustomerManager::customer_config"/>
+        
+    </menu>
+</config>

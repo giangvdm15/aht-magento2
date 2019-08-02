@@ -11,8 +11,7 @@ class Index extends \Magento\Framework\View\Element\Template
         \Magento\Framework\View\Element\Template\Context $context,
         \GiangVu\Blog\Model\PostFactory $postFactory,
         \GiangVu\Blog\Model\PostRepository $postRepo
-        )
-    {
+    ) {
         parent::__construct($context);
         $this->_postFactory = $postFactory;
         $this->_postRepository = $postRepo;

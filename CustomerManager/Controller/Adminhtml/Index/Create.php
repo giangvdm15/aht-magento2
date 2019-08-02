@@ -1,20 +1,20 @@
 <?php
-namespace GiangVu\Blog\Controller\Index;
+namespace GiangVu\CustomerManager\Controller\Adminhtml\Index;
 
 class Create extends \Magento\Framework\App\Action\Action
 {
     protected $_pageFactory;
     
-    protected $_postFactory;
+    protected $_customerFactory;
     
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
         \Magento\Framework\View\Result\PageFactory $pageFactory,
-        \GiangVu\Blog\Model\PostFactory $postFactory
+        \Magento\Customer\Model\CustomerFactory $customerFactory
     ) {
-        $this->_pageFactory = $pageFactory;
-        $this->_postFactory = $postFactory;
-        return parent::__construct($context);
+            $this->_pageFactory = $pageFactory;
+            $this->_postFactory = $customerFactory;
+            return parent::__construct($context);
     }
     
     public function execute()

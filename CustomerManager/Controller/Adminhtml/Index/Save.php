@@ -21,28 +21,44 @@ class Save extends \Magento\Framework\App\Action\Action
         \Magento\Framework\Registry $coreRegistry,
         \Magento\Framework\Controller\ResultFactory $result
     ) {
-            $this->_pageFactory = $pageFactory;
-            $this->_customerFactory = $customerFactory;
-//             $this->_customerRepository = $customerRepository;
-            $this->_encryptor = $encryptorInterface;
-            $this->_coreRegistry = $coreRegistry;
-            $this->resultRedirect = $result;
-            
-            return parent::__construct($context);
+        $this->_pageFactory = $pageFactory;
+        $this->_customerFactory = $customerFactory;
+//         $this->_customerRepository = $customerRepository;
+        $this->_encryptor = $encryptorInterface;
+        $this->_coreRegistry = $coreRegistry;
+        $this->resultRedirect = $result;
+        
+        return parent::__construct($context);
     }
     
     public function execute()
     {
         $this->resultRedirect = $this->resultRedirectFactory->create();
-        $this->resultRedirect->setPath('customer/*/');
-        $data = $this->getRequest()->getPostValue();
+        $this->resultRedirect->setPath('customermanager/*/');
+        $postData = $this->getRequest()->getPostValue();
         
-        $id = $data['entity_id'];
-        $password = $data['new_password'];
-        
+        $id = $postData['entity_id'] ? $postData['entity_id'] : null;
         $customer = $this->_customerFactory->create();
-        $customer = $customer->load($id);
-        $customer = $customer->changePassword($password);
+        
+        if ($id == null) { // save new customer          
+            // prepare password
+            $password = $postData['password'];
+            unset($postData['password']);
+            $postData['password_hash'] = $this->_encryptor->getHash($password, true);
+            
+            $customer->setData($postData);
+        }
+        else { // save password or update customer
+            if (isset($postData['new_password'])) { // change password
+                $customer = $customer->load($id);
+                $password = $postData['new_password'];
+                $customer = $customer->changePassword($password);
+            }
+            else {
+                $customer->setData($postData);
+            }
+        }
+        
         $customer->save();
         
 //         $customer = $this->customerRepository->getById($id);
