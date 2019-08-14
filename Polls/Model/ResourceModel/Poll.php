@@ -1,7 +1,7 @@
 <?php
-namespace GiangVu\Blog\Model\ResourceModel;
+namespace GiangVu\Polls\Model\ResourceModel;
 
-class Post extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
+class Poll extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
 {
     
     public function __construct(
@@ -12,7 +12,7 @@ class Post extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
     
     protected function _construct()
     {
-        $this->_init('aht_blog_post', 'post_id');
+        $this->_init('giangvu_poll_entity', 'poll_id');
     }
     
 }

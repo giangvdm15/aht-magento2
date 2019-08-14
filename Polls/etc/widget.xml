@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+	<widget id="emizentech_categorywidget" class="GiangVu\Polls\Block\Widget\PollsWidget">
+		<label>Polls</label>
+		<description>Custom Polls Widget</description>
+		<parameters>
+			<parameter name="title" xsi:type="text" required="false" visible="true">
+				<label translate="true">Poll</label>
+			</parameter>
+			<!--
+			<parameter name="template" xsi:type="select" required="true" visible="true">
+				<label translate="true">Template</label>
+				<options>
+					<option name="default" value="Magento_CatalogWidget::product/widget/content/grid.phtml" selected="true">
+						<label translate="true">Product Grid Template</label>
+					</option>
+				</options>
+			</parameter>
+			-->
+		</parameters>
+	</widget>
+</widgets>

@@ -1,5 +1,5 @@
 <?php
-namespace GiangVu\CustomerManager\Block\Adminhtml\MyCustomer\Edit;
+namespace GiangVu\Polls\Block\Adminhtml\MyPoll\Edit;
 
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 
@@ -8,7 +8,7 @@ class SaveButton extends GenericButton implements ButtonProviderInterface
     public function getButtonData()
     {
         return [
-            'label' => __('Save Customer'),
+            'label' => __('Save Poll'),
             'class' => 'save primary',
             'data_attribute' => [
                 'mage-init' => ['button' => ['event' => 'save']],

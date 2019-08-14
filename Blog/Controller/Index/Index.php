@@ -11,8 +11,7 @@ class Index extends \Magento\Framework\App\Action\Action
         \Magento\Framework\App\Action\Context $context,
         \Magento\Framework\View\Result\PageFactory $pageFactory,
         \GiangVu\Blog\Model\PostFactory $postFactory
-        )
-    {
+    ) {
         $this->_pageFactory = $pageFactory;
         $this->_postFactory = $postFactory;
         return parent::__construct($context);

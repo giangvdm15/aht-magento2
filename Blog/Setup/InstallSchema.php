@@ -4,8 +4,10 @@ namespace GiangVu\Blog\Setup;
 class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
 {
 
-    public function install(\Magento\Framework\Setup\SchemaSetupInterface $setup, \Magento\Framework\Setup\ModuleContextInterface $context)
-    {
+    public function install(
+        \Magento\Framework\Setup\SchemaSetupInterface $setup,
+        \Magento\Framework\Setup\ModuleContextInterface $context
+    ) {
         $installer = $setup;
         $installer->startSetup();
         if (! $installer->tableExists('aht_blog_post')) {
