@@ -1,10 +1,10 @@
 <?php
 
-namespace GiangVu\Polls\Controller\Adminhtml\Polls;
+namespace GiangVu\Polls\Controller\Adminhtml\Poll;
 
-class Index extends \GiangVu\Polls\Controller\Adminhtml\Poll
+class Edit extends \Magento\Backend\App\Action
 {
-    const ADMIN_RESOURCE = 'Polls';
+    const ADMIN_RESOURCE = 'Poll';
     
     protected $resultPageFactory;
     
@@ -20,5 +20,4 @@ class Index extends \GiangVu\Polls\Controller\Adminhtml\Poll
     {
         return $this->resultPageFactory->create();
     }
-    
 }

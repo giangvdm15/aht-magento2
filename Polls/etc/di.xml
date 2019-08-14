@@ -26,7 +26,7 @@
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">
-                <item name="polls_listing_data_source" xsi:type="string">GiangVu\Polls\Model\ResourceModel\Poll\Grid\Collection</item>
+                <item name="poll_listing_data_source" xsi:type="string">GiangVu\Polls\Model\ResourceModel\Poll\Grid\Collection</item>
             </argument>
         </arguments>
     </type>

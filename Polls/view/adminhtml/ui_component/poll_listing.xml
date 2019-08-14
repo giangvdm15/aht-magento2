@@ -3,8 +3,8 @@
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
         
-            <item name="provider" xsi:type="string">polls_listing.polls_listing_data_source</item>
-            <item name="deps" xsi:type="string">polls_listing.polls_listing_data_source</item>
+            <item name="provider" xsi:type="string">poll_listing.poll_listing_data_source</item>
+            <item name="deps" xsi:type="string">poll_listing.poll_listing_data_source</item>
         </item>
 
         <item name="spinner" xsi:type="string">polls_columns</item>
@@ -29,15 +29,15 @@
 		</buttons>
 		<spinner>polls_columns</spinner>
 		<deps>
-		    <dep>polls_listing.polls_listing_data_source</dep>
+		    <dep>poll_listing.poll_listing_data_source</dep>
 		</deps>
 	</settings>
 
-    <dataSource name="polls_listing_data_source">
+    <dataSource name="poll_listing_data_source">
         <argument name="dataProvider" xsi:type="configurableObject">
 
             <argument name="class" xsi:type="string">PollsGridDataProvider</argument>
-            <argument name="name" xsi:type="string">polls_listing_data_source</argument>
+            <argument name="name" xsi:type="string">poll_listing_data_source</argument>
             <argument name="primaryFieldName" xsi:type="string">poll_id</argument>
             <argument name="requestFieldName" xsi:type="string">id</argument>
             <argument name="data" xsi:type="array">
@@ -57,13 +57,13 @@
         <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
                 <item name="storageConfig" xsi:type="array">
-                    <item name="provider" xsi:type="string">polls_listing.polls_listing.listing_top.bookmarks</item>
+                    <item name="provider" xsi:type="string">poll_listing.poll_listing.listing_top.bookmarks</item>
                     <item name="namespace" xsi:type="string">current</item>
                 </item>
                 <item name="childDefaults" xsi:type="array">
                     <item name="controlVisibility" xsi:type="boolean">true</item>
                     <item name="storageConfig" xsi:type="array">
-                        <item name="provider" xsi:type="string">polls_listing.polls_listing.listing_top.bookmarks</item>
+                        <item name="provider" xsi:type="string">poll_listing.poll_listing.listing_top.bookmarks</item>
                         <item name="root" xsi:type="string">columns.${ $.index }</item>
                         <item name="namespace" xsi:type="string">current.${ $.storageConfig.root}</item>
                     </item>

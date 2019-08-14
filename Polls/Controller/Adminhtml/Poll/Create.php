@@ -1,5 +1,5 @@
 <?php
-namespace GiangVu\Polls\Controller\Adminhtml\Polls;
+namespace GiangVu\Polls\Controller\Adminhtml\Poll;
 
 class Create extends \Magento\Framework\App\Action\Action
 {

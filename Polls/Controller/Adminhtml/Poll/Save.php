@@ -1,9 +1,9 @@
 <?php
-namespace GiangVu\Polls\Controller\Adminhtml\Polls;
+namespace GiangVu\Polls\Controller\Adminhtml\Poll;
 
 class Save extends \Magento\Framework\App\Action\Action
 {
-    const ADMIN_RESOURCE = 'Polls';
+    const ADMIN_RESOURCE = 'Poll';
     
     protected $_pageFactory;
     protected $_pollFactory;

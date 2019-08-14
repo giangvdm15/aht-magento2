@@ -28,7 +28,7 @@ class PollActions extends Column
             {
                 $item[$this->getData('name')]['edit'] = [
                     'href' => $this->urlBuilder->getUrl(
-                        'polls/polls/edit',
+                        'polls/poll/edit',
                         ['id' => $item['poll_id']]
                     ),
                     'label' => __('Edit'),
@@ -36,7 +36,7 @@ class PollActions extends Column
                 ];
                 $item[$this->getData('name')]['delete'] = [
                     'href' => $this->urlBuilder->getUrl(
-                        'polls/polls/delete',
+                        'polls/poll/delete',
                         ['id' => $item['poll_id']]
                     ),
                     'label' => __('Delete'),

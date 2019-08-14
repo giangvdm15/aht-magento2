@@ -35,7 +35,7 @@
             <argument name="requestFieldName" xsi:type="string">id</argument>
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="submit_url" xsi:type="url" path="polls/polls/save" />
+                    <item name="submit_url" xsi:type="url" path="polls/poll/save" />
                 </item>
             </argument>
         </argument>
