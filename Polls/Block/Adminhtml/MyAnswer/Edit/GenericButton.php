@@ -1,5 +1,5 @@
 <?php
-namespace GiangVu\Polls\Block\Adminhtml\MyPoll\Edit;
+namespace GiangVu\Polls\Block\Adminhtml\MyAnswer\Edit;
 use Magento\Search\Controller\RegistryConstants;
 
 class GenericButton
@@ -10,15 +10,15 @@ class GenericButton
     public function __construct(
         \Magento\Backend\Block\Widget\Context $context,
         \Magento\Framework\Registry $registry
-    ) {
-        $this->urlBuilder = $context->getUrlBuilder();
-        $this->registry = $registry;
+        ) {
+            $this->urlBuilder = $context->getUrlBuilder();
+            $this->registry = $registry;
     }
     
     public function getId()
     {
-        $poll = $this->registry->registry('poll');
-        return $poll ? $poll->getId() : null;
+        $answer = $this->registry->registry('answer');
+        return $answer ? $answer->getId() : null;
     }
     
     public function getUrl($route = '', $params = [])

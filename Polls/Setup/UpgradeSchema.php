@@ -14,7 +14,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
 
         $installer->startSetup();
 
-        if (version_compare($context->getVersion(), '1.0.6', '<')) {
+        if (version_compare($context->getVersion(), '1.0.10', '<')) {
             // POLL ENTITY TABLE
             if (! $installer->tableExists('giangvu_poll_entity')) {
                 $poll_entity_table = $installer->getConnection()
@@ -68,6 +68,10 @@ class UpgradeSchema implements UpgradeSchemaInterface
                     ->addColumn('answer_content', \Magento\Framework\DB\Ddl\Table::TYPE_TEXT, '64k', [
                     'nullable' => false
                 ], 'Answer Content')
+                    ->addColumn('poll_id', \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER, null, [
+                    'nullable' => false,
+                    'unsigned' => true,
+                ], 'Poll ID')
                     ->addColumn('created_at', \Magento\Framework\DB\Ddl\Table::TYPE_TIMESTAMP, null, [
                     'nullable' => false,
                     'default' => \Magento\Framework\DB\Ddl\Table::TIMESTAMP_INIT
@@ -75,7 +79,8 @@ class UpgradeSchema implements UpgradeSchemaInterface
                     ->addColumn('updated_at', \Magento\Framework\DB\Ddl\Table::TYPE_TIMESTAMP, null, [
                     'nullable' => true
                 ], 'Updated At')
-                    ->setComment('Poll Table');
+                    ->addForeignKey($installer->getFkName('giangvu_answer_entity', 'poll_id', 'giangvu_poll_entity', 'poll_id'), 'poll_id', $installer->getTable('giangvu_poll_entity'), 'poll_id', \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE)
+                    ->setComment('Answer Table');
                 $installer->getConnection()->createTable($answer_entity_table);
 
                 $installer->getConnection()->addIndex($installer->getTable('giangvu_answer_entity'), $setup->getIdxName($installer->getTable('giangvu_answer_entity'), [
@@ -85,58 +90,6 @@ class UpgradeSchema implements UpgradeSchemaInterface
                 ], \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_FULLTEXT);
             }
             // end of ANSWER ENTITY TABLE
-
-            // POLL-ANSWER TABLE
-            if (! $installer->tableExists('giangvu_poll_answer')) {
-                $poll_answer_table = $installer->getConnection()
-                    ->newTable($installer->getTable('giangvu_poll_answer'))
-                    ->addColumn('entity_id', \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER, null, [
-                    'identity' => true,
-                    'nullable' => false,
-                    'primary' => true,
-                    'unsigned' => true
-                ], 'Entity ID')
-                    ->addColumn('poll_id', \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER, null, [
-                    'nullable' => false,
-                    'unsigned' => true
-                ], 'Poll ID')
-                    ->addColumn('answer_id', \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER, null, [
-                    'nullable' => false,
-                    'unsigned' => true
-                ], 'Answer ID')
-                    ->addColumn('count', \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER, null, [
-                    'nullable' => false,
-                    'unsigned' => true,
-                    'default' => 0
-                ], 'Count')
-                    ->addForeignKey(
-                        $installer->getFkName(
-                            'giangvu_poll_answer',
-                            'poll_id',
-                            'giangvu_poll_entity',
-                            'poll_id'
-                        ),
-                        'poll_id',
-                        $installer->getTable('giangvu_poll_entity'),
-                        'poll_id',
-                        \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
-                    )
-                    ->addForeignKey(
-                        $installer->getFkName(
-                            'giangvu_poll_answer',
-                            'answer_id',
-                            'giangvu_answer_entity',
-                            'answer_id'
-                        ),
-                        'answer_id',
-                        $installer->getTable('giangvu_answer_entity'),
-                        'answer_id',
-                        \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
-                    )
-                    ->setComment('Poll-Answer Table');
-                $installer->getConnection()->createTable($poll_answer_table);
-            }
-            // end of POLL-ANSWER TABLE
             
             // POLL-CUSTOMER TABLE
             if (! $installer->tableExists('giangvu_poll_customer')) {

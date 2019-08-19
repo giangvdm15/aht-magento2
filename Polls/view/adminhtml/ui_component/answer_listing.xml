@@ -1,19 +1,19 @@
 <?xml version="1.0" ?>
 <listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <argument name="data" xsi:type="array">
-    	<item name="label" xsi:type="string" translate="true">All Polls</item>
+    	<item name="label" xsi:type="string" translate="true">All Answers</item>
         <item name="js_config" xsi:type="array">
         
-            <item name="provider" xsi:type="string">poll_listing.poll_listing_data_source</item>
-            <item name="deps" xsi:type="string">poll_listing.poll_listing_data_source</item>
+            <item name="provider" xsi:type="string">answer_listing.answer_listing_data_source</item>
+            <item name="deps" xsi:type="string">answer_listing.answer_listing_data_source</item>
         </item>
 
-        <item name="spinner" xsi:type="string">polls_columns</item>
+        <item name="spinner" xsi:type="string">answers_columns</item>
 
         <item name="buttons" xsi:type="array">
             <item name="add" xsi:type="array">
                 <item name="name" xsi:type="string">add</item>
-                <item name="label" xsi:type="string" translate="true">Add new Poll</item>
+                <item name="label" xsi:type="string" translate="true">Add new Answer</item>
                 <item name="class" xsi:type="string">primary</item>
                 <item name="url" xsi:type="string">*/*/create</item>
             </item>
@@ -25,46 +25,56 @@
 		    <button name="add">
 		        <url path="*/*/create"/>
 		        <class>primary</class>
-		        <label translate="true">Add New Poll</label>
+		        <label translate="true">Add New Answer</label>
 		    </button>
 		</buttons>
-		<spinner>polls_columns</spinner>
+		<spinner>answers_columns</spinner>
 		<deps>
-		    <dep>poll_listing.poll_listing_data_source</dep>
+		    <dep>answer_listing.answer_listing_data_source</dep>
 		</deps>
 	</settings>
 
-    <dataSource name="poll_listing_data_source">
+    <dataSource name="answer_listing_data_source">
         <argument name="dataProvider" xsi:type="configurableObject">
-
-            <argument name="class" xsi:type="string">PollsGridDataProvider</argument>
-            <argument name="name" xsi:type="string">poll_listing_data_source</argument>
-            <argument name="primaryFieldName" xsi:type="string">poll_id</argument>
+            <argument name="class" xsi:type="string">AnswersGridDataProvider</argument>
+            <argument name="name" xsi:type="string">answer_listing_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">answer_id</argument>
             <argument name="requestFieldName" xsi:type="string">id</argument>
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
                     <item name="update_url" xsi:type="url" path="mui/index/render" />
                     <item name="storageConfig" xsi:type="array">
-                        <item name="indexField" xsi:type="string">poll_id</item>
+                        <item name="indexField" xsi:type="string">answer_id</item>
                     </item>
                 </item>
             </argument>
         </argument>
     </dataSource>
     
+    <!--
+    <dataSource name="all_poll_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">PollsGridDataProvider</argument>
+            <argument name="name" xsi:type="string">all_poll_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">poll_id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            
+        </argument>
+    </dataSource>
+    -->
 
-    <columns name="polls_columns">
+    <columns name="answers_columns">
         <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
                 <item name="storageConfig" xsi:type="array">
-                    <item name="provider" xsi:type="string">poll_listing.poll_listing.listing_top.bookmarks</item>
+                    <item name="provider" xsi:type="string">answer_listing.answer_listing.listing_top.bookmarks</item>
                     <item name="namespace" xsi:type="string">current</item>
                 </item>
                 <item name="childDefaults" xsi:type="array">
                     <item name="controlVisibility" xsi:type="boolean">true</item>
                     <item name="storageConfig" xsi:type="array">
-                        <item name="provider" xsi:type="string">poll_listing.poll_listing.listing_top.bookmarks</item>
+                        <item name="provider" xsi:type="string">answer_listing.answer_listing.listing_top.bookmarks</item>
                         <item name="root" xsi:type="string">columns.${ $.index }</item>
                         <item name="namespace" xsi:type="string">current.${ $.storageConfig.root}</item>
                     </item>
@@ -74,12 +84,12 @@
         <selectionsColumn name="ids">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="indexField" xsi:type="string">poll_id</item>
+                    <item name="indexField" xsi:type="string">answer_id</item>
                 </item>
             </argument>
         </selectionsColumn>
 
-        <column name="poll_id">
+        <column name="answer_id">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">textRange</item>
@@ -89,32 +99,16 @@
             </argument>
         </column>
 
-        <column name="poll_title">
+        <column name="answer_content">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="visible" xsi:type="boolean">true</item>
                     <item name="dataType" xsi:type="string">text</item>
                     <item name="formElement" xsi:type="string">input</item>
-                    <item name="source" xsi:type="string">poll</item>
+                    <item name="source" xsi:type="string">answer</item>
                     <item name="dataScope" xsi:type="string">name</item>
                     <item name="filter" xsi:type="string">text</item>
-                    <item name="label" xsi:type="string" translate="true">Poll Title</item>
-                    <item name="validation" xsi:type="array">
-                        <item name="required-entry" xsi:type="boolean">true</item>
-                    </item>
-                </item>
-            </argument>
-        </column>
-        <column name="poll_content">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="visible" xsi:type="boolean">true</item>
-                    <item name="dataType" xsi:type="string">text</item>
-                    <item name="formElement" xsi:type="string">input</item>
-                    <item name="source" xsi:type="string">poll</item>
-                    <item name="dataScope" xsi:type="string">name</item>
-                    <item name="filter" xsi:type="string">text</item>
-                    <item name="label" xsi:type="string" translate="true">Poll Content</item>
+                    <item name="label" xsi:type="string" translate="true">Answer content</item>
                     <item name="validation" xsi:type="array">
                         <item name="required-entry" xsi:type="boolean">true</item>
                     </item>
@@ -122,16 +116,16 @@
             </argument>
         </column>
         
-         <column name="status">
+         <column name="poll_id">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="visible" xsi:type="boolean">true</item>
                     <item name="dataType" xsi:type="string">text</item>
                     <item name="formElement" xsi:type="string">input</item>
-                    <item name="source" xsi:type="string">poll</item>
+                    <item name="source" xsi:type="string">answer</item>
                     <item name="dataScope" xsi:type="string">name</item>
                     <item name="filter" xsi:type="string">text</item>
-                    <item name="label" xsi:type="string" translate="true">Status</item>
+                    <item name="label" xsi:type="string" translate="true">Poll</item>
                     <item name="validation" xsi:type="array">
                         <item name="required-entry" xsi:type="boolean">true</item>
                     </item>
@@ -163,10 +157,10 @@
     		</argument>
 		</column>
 
-        <actionsColumn name="actions" class="GiangVu\Polls\Ui\Component\Listing\Columns\PollActions">
+        <actionsColumn name="actions" class="GiangVu\Polls\Ui\Component\Listing\Columns\AnswerActions">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                	<item name="indexField" xsi:type="string">poll_id</item>
+                	<item name="indexField" xsi:type="string">answer_id</item>
                     <item name="resizeEnabled" xsi:type="boolean">false</item>
                     <item name="sortable" xsi:type="boolean">false</item>
                     <item name="label" xsi:type="string" translate="true">Actions</item>

@@ -4,17 +4,42 @@
             <argument name="resource" xsi:type="object">GiangVu\Polls\Model\ResourceModel\Poll</argument>
         </arguments>
     </type>
+    <type name="GiangVu\Polls\Model\Answer">
+        <arguments>
+            <argument name="resource" xsi:type="object">GiangVu\Polls\Model\ResourceModel\Answer</argument>
+        </arguments>
+    </type>
+    
     <preference for="GiangVu\Polls\Api\PollRepositoryInterface" type="GiangVu\Polls\Model\PollRepository"/>
     <preference for="GiangVu\Polls\Api\Data\PollInterface" type="GiangVu\Polls\Model\Poll"/>
     <preference for="GiangVu\Polls\Api\Data\PollSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    
+    <preference for="GiangVu\Polls\Api\AnswerRepositoryInterface" type="GiangVu\Polls\Model\AnswerRepository"/>
+    <preference for="GiangVu\Polls\Api\Data\AnswerInterface" type="GiangVu\Polls\Model\Answer"/>
+    <preference for="GiangVu\Polls\Api\Data\AnswerSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    
     <virtualType name="PollsGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
         <arguments>
             <argument name="collection" xsi:type="object" shared="false">GiangVu\Polls\Model\ResourceModel\Poll\Collection</argument>
             <argument name="filterPool" xsi:type="object" shared="false">PollsGridFilterPool</argument>
         </arguments>
     </virtualType>
+    <virtualType name="AnswersGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">GiangVu\Polls\Model\ResourceModel\Answer\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">AnswersGridFilterPool</argument>
+        </arguments>
+    </virtualType>
 
     <virtualType name="PollsGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="AnswersGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
         <arguments>
             <argument name="appliers" xsi:type="array">
                 <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
@@ -28,6 +53,14 @@
             <argument name="collections" xsi:type="array">
                 <item name="poll_listing_data_source" xsi:type="string">GiangVu\Polls\Model\ResourceModel\Poll\Grid\Collection</item>
             </argument>
+            <argument name="collections" xsi:type="array">
+                <item name="answer_listing_data_source" xsi:type="string">GiangVu\Polls\Model\ResourceModel\Answer\Grid\Collection</item>
+            </argument>
+            <!-- 
+            <argument name="collections" xsi:type="array">
+                <item name="poll_dropdown_data_source" xsi:type="string">GiangVu\Polls\Model\ResourceModel\Poll\Grid\Collection</item>
+            </argument>
+            -->
         </arguments>
     </type>
 
@@ -35,6 +68,12 @@
         <arguments>
             <argument name="mainTable" xsi:type="string">giangvu_poll_entity</argument>
             <argument name="resourceModel" xsi:type="string">GiangVu\Polls\Model\ResourceModel\Poll\Collection</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="GiangVu\Polls\Model\ResourceModel\Answer\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">giangvu_answer_entity</argument>
+            <argument name="resourceModel" xsi:type="string">GiangVu\Polls\Model\ResourceModel\Answer\Collection</argument>
         </arguments>
     </virtualType>
 </config>

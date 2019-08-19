@@ -6,7 +6,7 @@ interface PollSearchResultsInterface extends \Magento\Framework\Api\SearchResult
 {
 
     /**
-     * Get Post list.
+     * Get Poll list.
      * @return \GiangVu\Polls\Api\Data\PollInterface[]
      */
     public function getItems();
