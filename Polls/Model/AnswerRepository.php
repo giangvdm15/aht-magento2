@@ -123,7 +123,7 @@ class AnswerRepository implements AnswerRepositoryInterface
             throw new CouldNotDeleteException(__(
                 'Could not delete the Answer: %1',
                 $exception->getMessage()
-                ));
+            ));
         }
         return true;
     }
