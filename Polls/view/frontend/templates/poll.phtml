@@ -1,25 +1,72 @@
-<div class="container">
-	<p>This is a poll question.</p>
-	<form method='POST' action="/polls/poll/save" id="poll-form">
-		<div class="form-check">
-  			<input class="form-check-input" type="radio" name="answer" id="option1" value="option1" checked>
-  			<label class="form-check-label" for="option1">
-    			Option 1
-  			</label>
-		</div>
-		<div class="form-check">
-  			<input class="form-check-input" type="radio" name="answer" id="option2" value="option2">
-  			<label class="form-check-label" for="option2">
-    			Option 2
-  			</label>
-		</div>
-		<div class="form-check">
-  			<input class="form-check-input" type="radio" name="answer" id="option3" value="option3">
-  			<label class="form-check-label" for="option3">
-    			Option 3
-  			</label>
-		</div>
-		<br>
-	    <button type="submit" class="btn btn-primary" name="createbtn">Submit</button>
-	</form>
-</div>
+<?php 
+// Check if customer has logged in
+if ($block->isCustomerLoggedIn()):
+?>
+    <div class="block block-poll">
+    	<div class="block-title">
+    		<strong role="heading" aria-level="2">Polls</strong>
+    	</div>
+        <?php 
+        $activePolls = $block->getActivePolls();
+        
+        foreach ($activePolls as $poll):
+            $pollId = $poll->getPoll_id();
+        ?>
+    
+            <div class="container poll-wrapper">
+            	<p class="poll-content" ><?= $poll->getPoll_content(); ?></p>
+            	<form method='POST' action="/polls/poll/submit/id/<?= $pollId ?>" id="poll-form-<?= $pollId ?>">
+            		
+            		<?php 
+            		$answers = $block->getAnswersByPollId($pollId);
+            		  
+            		$count = 0;
+            		foreach ($answers as $ans):
+            		  $count++;
+            		?>
+            		
+                		<div class="form-check">
+                  			<input class="form-check-input" type="radio" name="answer" id="option-<?= $count; ?>" value="<?= $ans->getAnswer_id(); ?>">
+                  			<label class="form-check-label" for="option-<?= $count; ?>">
+                    			<?= $ans->getAnswer_content(); ?>
+                  			</label>
+                		</div>
+            		
+            		<?php 
+            		// end rendering answers
+            		endforeach;
+            		?>    
+            				
+            		<br>
+            	    <button type="submit" class="btn btn-primary" name="submit-poll">Submit</button>
+            	</form>
+            </div>
+        
+        <?php 
+        // end rendering poll form(s)
+        endforeach;
+        ?>
+    </div>
+
+<?php 
+// end check login
+endif;
+?>
+
+<!-- Internal styling - must remove and replace with proper methodology later on -->
+<style>
+.poll-wrapper {
+    margin: 20px 0;
+    border-top: 1px dotted #000;
+}
+
+.poll-content {
+    font-weight: bold;
+    font-style: italic;
+}
+
+.block-poll .block-title strong {
+    font-size: 18px;
+    font-weight: 300;
+}
+</style>

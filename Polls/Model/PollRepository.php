@@ -123,7 +123,7 @@ class PollRepository implements PollRepositoryInterface
             throw new CouldNotDeleteException(__(
                 'Could not delete the Poll: %1',
                 $exception->getMessage()
-                ));
+            ));
         }
         return true;
     }

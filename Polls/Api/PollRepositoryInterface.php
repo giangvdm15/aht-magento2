@@ -30,7 +30,7 @@ interface PollRepositoryInterface
      * @return \GiangVu\Polls\Api\Data\PollSearchResultsInterface
      * @throws \Magento\Framework\Exception\LocalizedException
      */
-    // public function getList(\Magento\Framework\Api\SearchCriteriaInterface $searchCriteria);
+//     public function getList(\Magento\Framework\Api\SearchCriteriaInterface $searchCriteria);
     
     /**
      * Delete Poll.

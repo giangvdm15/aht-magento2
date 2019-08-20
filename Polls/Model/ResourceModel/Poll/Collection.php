@@ -5,7 +5,7 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
 {
     protected $_idFieldName = 'poll_id';
     protected $_eventPrefix = 'giangvu_poll_entity_collection';
-    protected $_eventObject = 'poll_collection';
+    protected $_eventObject = 'entity_collection';
     
     /**
      * Define resource model
