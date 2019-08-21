@@ -1,0 +1,152 @@
+<?xml version="1.0" ?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+    	<item name="label" xsi:type="string" translate="true">All Polls</item>
+        <item name="js_config" xsi:type="array">
+        
+            <item name="provider" xsi:type="string">submission_listing.submission_listing_data_source</item>
+            <item name="deps" xsi:type="string">submission_listing.submission_listing_data_source</item>
+        </item>
+
+        <item name="spinner" xsi:type="string">polls_columns</item>
+
+		<!-- 
+        <item name="buttons" xsi:type="array">
+            <item name="add" xsi:type="array">
+                <item name="name" xsi:type="string">add</item>
+                <item name="label" xsi:type="string" translate="true">Add new Poll</item>
+                <item name="class" xsi:type="string">primary</item>
+                <item name="url" xsi:type="string">*/*/create</item>
+            </item>
+        </item>
+        -->
+    </argument>
+    
+    <settings>
+    	<!-- 
+		<buttons>
+		    <button name="add">
+		        <url path="*/*/create"/>
+		        <class>primary</class>
+		        <label translate="true">Add New Poll</label>
+		    </button>
+		</buttons>
+		-->
+		<spinner>polls_columns</spinner>
+		<deps>
+		    <dep>submission_listing.submission_listing_data_source</dep>
+		</deps>
+	</settings>
+
+    <dataSource name="submission_listing_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+
+            <argument name="class" xsi:type="string">SubmissionsGridDataProvider</argument>
+            <argument name="name" xsi:type="string">submission_listing_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">submission_id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+                    <item name="update_url" xsi:type="url" path="mui/index/render" />
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="indexField" xsi:type="string">submission_id</item>
+                    </item>
+                </item>
+            </argument>
+        </argument>
+    </dataSource>
+    
+
+    <columns name="polls_columns">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="storageConfig" xsi:type="array">
+                    <item name="provider" xsi:type="string">submission_listing.submission_listing.listing_top.bookmarks</item>
+                    <item name="namespace" xsi:type="string">current</item>
+                </item>
+                <item name="childDefaults" xsi:type="array">
+                    <item name="controlVisibility" xsi:type="boolean">true</item>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="provider" xsi:type="string">submission_listing.submission_listing.listing_top.bookmarks</item>
+                        <item name="root" xsi:type="string">columns.${ $.index }</item>
+                        <item name="namespace" xsi:type="string">current.${ $.storageConfig.root}</item>
+                    </item>
+                </item>
+            </item>
+        </argument>
+        <selectionsColumn name="ids">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="indexField" xsi:type="string">submission_id</item>
+                </item>
+            </argument>
+        </selectionsColumn>
+
+        <column name="submission_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="sorting" xsi:type="string">desc</item>
+                    <item name="label" xsi:type="string" translate="true">Submission ID</item>
+                </item>
+            </argument>
+        </column>
+        
+        <column name="poll_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="sorting" xsi:type="string">desc</item>
+                    <item name="label" xsi:type="string" translate="true">Poll ID</item>
+                </item>
+            </argument>
+        </column>
+        
+        <column name="customer_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="sorting" xsi:type="string">desc</item>
+                    <item name="label" xsi:type="string" translate="true">Customer ID</item>
+                </item>
+            </argument>
+        </column>
+        
+        <column name="answer_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="sorting" xsi:type="string">desc</item>
+                    <item name="label" xsi:type="string" translate="true">Answer ID</item>
+                </item>
+            </argument>
+        </column>
+        
+        <column name="created_at" class="Magento\Ui\Component\Listing\Columns\Date">
+    		<argument name="data" xsi:type="array">
+		        <item name="config" xsi:type="array">
+		            <item name="filter" xsi:type="string">dateRange</item>
+		            <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/date</item>
+		            <item name="dataType" xsi:type="string">date</item>
+		            <item name="label" xsi:type="string" translate="true">Created At</item>
+		            <item name="dateFormat" xsi:type="string">Y-MM-dd HH:mm:ss</item>
+		        </item>
+    		</argument>
+		</column>
+
+        <actionsColumn name="actions" class="GiangVu\Polls\Ui\Component\Listing\Columns\SubmissionActions">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                	<item name="indexField" xsi:type="string">submission_id</item>
+                    <item name="resizeEnabled" xsi:type="boolean">false</item>
+                    <item name="sortable" xsi:type="boolean">false</item>
+                    <item name="label" xsi:type="string" translate="true">Actions</item>
+                    <item name="resizeDefaultWidth" xsi:type="string">107</item>
+                </item>
+            </argument>
+        </actionsColumn>
+        
+    </columns>
+    
+</listing>

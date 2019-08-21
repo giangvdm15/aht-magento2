@@ -27,8 +27,7 @@ class Save extends \Magento\Framework\App\Action\Action
 		\Magento\Framework\Controller\ResultFactory $result, 
 		\Magento\Framework\App\Cache\TypeListInterface $cacheTypeList, 
 		\Magento\Framework\App\Cache\Frontend\Pool $cacheFrontendPool
-		)
-	{
+	) {
 		$this->_pageFactory = $pageFactory;
 		$this->_postFactory = $postFactory;
 		$this->_postRepository = $postRepository;

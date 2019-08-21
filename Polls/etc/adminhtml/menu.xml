@@ -1,73 +1,5 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
-	<!-- 
-	<menu>
-		<add id="GiangVu_Polls::level1" 
-		  title="GiangVu" 
-		  translate="title" 
-		  module="GiangVu_Polls" 
-		  parent="Magento_Backend::content" 
-		  sortOrder="50" 
-		  dependsOnModule="GiangVu_Polls" 
-		  resource="GiangVu_Polls::level1"/>
-		  
-		<add id="GiangVu_Polls::level2" 
-		  title="Polls" 
-		  translate="title" 
-		  module="GiangVu_Polls" 
-		  parent="GiangVu_Polls::level1" 
-		  sortOrder="10" 
-		  dependsOnModule="GiangVu_Polls" 
-		  action="polls/polls" 
-		  resource="GiangVu_Polls::level1"/>
-		          
-		<add id="GiangVu_Polls::polls" 
-		  title="Polls" 
-		  translate="title" 
-		  module="GiangVu_Polls" 
-		  sortOrder="51" 
-		  dependsOnModule="GiangVu_Polls" 
-		  resource="GiangVu_Polls::polls"/>
-		  
-		<add id="GiangVu_Polls::poll" 
-		  title="Polls" 
-		  translate="title" 
-		  module="GiangVu_Polls" 
-		  parent="GiangVu_Polls::polls" 
-		  sortOrder="10" 
-		  dependsOnModule="GiangVu_Polls" 
-		  action="polls/poll" 
-		  resource="GiangVu_Polls::poll"/>
-		  
-		<add id="GiangVu_Polls::answers" 
-		  title="Answers" 
-		  translate="title" 
-		  module="GiangVu_Polls" 
-		  sortOrder="52" 
-		  dependsOnModule="GiangVu_Polls" 
-		  resource="GiangVu_Polls::answers"/>
-		  
-		<add id="GiangVu_Polls::answer" 
-		  title="Answers" 
-		  translate="title" 
-		  module="GiangVu_Polls" 
-		  parent="GiangVu_Polls::answers" 
-		  sortOrder="10" 
-		  dependsOnModule="GiangVu_Polls" 
-		  action="polls/answer" 
-		  resource="GiangVu_Polls::answer"/>
-		
-		<add id="GiangVu_Polls::polls_config" 
-		  title="Configuration" 
-		  translate="title" 
-		  module="GiangVu_Polls" 
-		  parent="GiangVu_Polls::polls" 
-		  sortOrder="10" 
-		  dependsOnModule="GiangVu_Polls" 
-		  action="adminhtml/system_config/edit/section/polls" 
-		  resource="GiangVu_Polls::polls_config"/>
-	</menu>
-	-->
 	<menu>
 		<!-- 
         <add id="Magento_Customer::customer_manage" title="All Customers" translate="title" module="Magento_Customer" sortOrder="10" parent="Magento_Customer::customer" action="customer/index/" resource="Magento_Customer::manage"/>
@@ -99,6 +31,16 @@
 		  dependsOnModule="GiangVu_Polls" 
 		  action="polls/answer" 
 		  resource="GiangVu_Polls::answer"/>
+		  
+		<add id="GiangVu_Polls::submission" 
+		  title="All Submissions" 
+		  translate="title" 
+		  module="GiangVu_Polls" 
+		  parent="GiangVu_Polls::polls" 
+		  sortOrder="20" 
+		  dependsOnModule="GiangVu_Polls" 
+		  action="polls/submission" 
+		  resource="GiangVu_Polls::submission"/>
         
         <add id="GiangVu_Polls::polls_config" 
 		  title="Configuration" 

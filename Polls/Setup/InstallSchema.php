@@ -86,16 +86,16 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
         }
         // end of ANSWER ENTITY TABLE
         
-        // POLL-CUSTOMER TABLE
-        if (! $installer->tableExists('giangvu_poll_customer')) {
-            $poll_customer_table = $installer->getConnection()
-            ->newTable($installer->getTable('giangvu_poll_customer'))
-            ->addColumn('entity_id', \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER, null, [
+        // SUBMISSION TABLE
+        if (! $installer->tableExists('giangvu_submission')) {
+            $submission_table = $installer->getConnection()
+            ->newTable($installer->getTable('giangvu_submission'))
+            ->addColumn('submission_id', \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER, null, [
                 'identity' => true,
                 'nullable' => false,
                 'primary' => true,
                 'unsigned' => true
-            ], 'Entity ID')
+            ], 'Submission ID')
             ->addColumn('poll_id', \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER, null, [
                 'nullable' => false,
                 'unsigned' => true
@@ -108,46 +108,50 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
                 'nullable' => false,
                 'unsigned' => true,
             ], 'Answer ID')
+            ->addColumn('created_at', \Magento\Framework\DB\Ddl\Table::TYPE_TIMESTAMP, null, [
+                'nullable' => false,
+                'default' => \Magento\Framework\DB\Ddl\Table::TIMESTAMP_INIT
+            ], 'Created At')
             ->addForeignKey(
                 $installer->getFkName(
-                    'giangvu_poll_customer',
+                    'giangvu_submission',
                     'poll_id',
                     'giangvu_poll_entity',
                     'poll_id'
-                    ),
+                ),
                 'poll_id',
                 $installer->getTable('giangvu_poll_entity'),
                 'poll_id',
                 \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
-                )
-                ->addForeignKey(
-                    $installer->getFkName(
-                        'giangvu_poll_customer',
-                        'customer_id',
-                        'customer_entity',
-                        'entity_id'
-                        ),
+            )
+            ->addForeignKey(
+                $installer->getFkName(
+                    'giangvu_submission',
                     'customer_id',
-                    $installer->getTable('customer_entity'),
-                    'entity_id',
-                    \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
-                    )
-                    ->addForeignKey(
-                        $installer->getFkName(
-                            'giangvu_poll_customer',
-                            'answer_id',
-                            'giangvu_answer_entity',
-                            'answer_id'
-                            ),
-                        'answer_id',
-                        $installer->getTable('giangvu_answer_entity'),
-                        'answer_id',
-                        \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
-                        )
-                        ->setComment('Poll-Customer Table');
-                        $installer->getConnection()->createTable($poll_customer_table);
+                    'customer_entity',
+                    'entity_id'
+                ),
+                'customer_id',
+                $installer->getTable('customer_entity'),
+                'entity_id',
+                \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
+            )
+            ->addForeignKey(
+                $installer->getFkName(
+                    'giangvu_submission',
+                    'answer_id',
+                    'giangvu_answer_entity',
+                    'answer_id'
+                ),
+                'answer_id',
+                $installer->getTable('giangvu_answer_entity'),
+                'answer_id',
+                \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
+            )
+            ->setComment('Poll-Customer/Submission Table');
+            $installer->getConnection()->createTable($submission_table);
         }
-        // end of POLL-CUSTOMER TABLE
+        // end of SUBMISSION TABLE
 
         $installer->endSetup();
     }

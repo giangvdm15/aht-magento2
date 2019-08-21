@@ -8,7 +8,7 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="content.aside">
-            <block class="GiangVu\Polls\Block\Poll" after="-" name="giangvu.poll.aside" template="GiangVu_Polls::poll.phtml" />
+            <block class="GiangVu\Polls\Block\FrontendPollRendering" after="-" name="giangvu.poll.aside" template="GiangVu_Polls::poll.phtml" />
         </referenceContainer>
     </body>
 </page>

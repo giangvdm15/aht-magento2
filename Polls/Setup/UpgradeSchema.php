@@ -14,7 +14,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
 
         $installer->startSetup();
 
-        if (version_compare($context->getVersion(), '1.0.10', '<')) {
+        if (version_compare($context->getVersion(), '1.0.12', '<')) {
             // POLL ENTITY TABLE
             if (! $installer->tableExists('giangvu_poll_entity')) {
                 $poll_entity_table = $installer->getConnection()
@@ -91,16 +91,16 @@ class UpgradeSchema implements UpgradeSchemaInterface
             }
             // end of ANSWER ENTITY TABLE
             
-            // POLL-CUSTOMER TABLE
-            if (! $installer->tableExists('giangvu_poll_customer')) {
-                $poll_customer_table = $installer->getConnection()
-                ->newTable($installer->getTable('giangvu_poll_customer'))
-                ->addColumn('entity_id', \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER, null, [
+            // SUBMISSION TABLE
+            if (! $installer->tableExists('giangvu_submission')) {
+                $submission_table = $installer->getConnection()
+                ->newTable($installer->getTable('giangvu_submission'))
+                ->addColumn('submission_id', \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER, null, [
                     'identity' => true,
                     'nullable' => false,
                     'primary' => true,
                     'unsigned' => true
-                ], 'Entity ID')
+                ], 'Submission ID')
                 ->addColumn('poll_id', \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER, null, [
                     'nullable' => false,
                     'unsigned' => true
@@ -113,9 +113,13 @@ class UpgradeSchema implements UpgradeSchemaInterface
                     'nullable' => false,
                     'unsigned' => true,
                 ], 'Answer ID')
+                ->addColumn('created_at', \Magento\Framework\DB\Ddl\Table::TYPE_TIMESTAMP, null, [
+                    'nullable' => false,
+                    'default' => \Magento\Framework\DB\Ddl\Table::TIMESTAMP_INIT
+                ], 'Created At')
                 ->addForeignKey(
                     $installer->getFkName(
-                        'giangvu_poll_customer',
+                        'giangvu_submission',
                         'poll_id',
                         'giangvu_poll_entity',
                         'poll_id'
@@ -127,7 +131,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
                 )
                 ->addForeignKey(
                     $installer->getFkName(
-                        'giangvu_poll_customer',
+                        'giangvu_submission',
                         'customer_id',
                         'customer_entity',
                         'entity_id'
@@ -139,7 +143,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
                 )
                 ->addForeignKey(
                     $installer->getFkName(
-                        'giangvu_poll_customer',
+                        'giangvu_submission',
                         'answer_id',
                         'giangvu_answer_entity',
                         'answer_id'
@@ -149,10 +153,10 @@ class UpgradeSchema implements UpgradeSchemaInterface
                     'answer_id',
                     \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
                 )
-                ->setComment('Poll-Customer Table');
-                $installer->getConnection()->createTable($poll_customer_table);
+                ->setComment('Poll-Customer/Submission Table');
+                $installer->getConnection()->createTable($submission_table);
             }
-            // end of POLL-CUSTOMER TABLE
+            // end of SUBMISSION TABLE
         }
 
         $installer->endSetup();

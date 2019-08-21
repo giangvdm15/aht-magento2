@@ -1,5 +1,5 @@
 <?php
-namespace GiangVu\Polls\Block\Adminhtml\MyAnswer\Edit;
+namespace GiangVu\Polls\Block\Adminhtml\MySubmission\Edit;
 
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 
@@ -8,8 +8,8 @@ class DeleteButton extends GenericButton implements ButtonProviderInterface
     public function getButtonData()
     {
         return [
-            'label' => __('Delete Answer'),
-            'on_click' => 'deleteConfirm(\'' . __('Are you sure you want to delete this Answer ?') . '\', \'' . $this->getDeleteUrl() . '\')',
+            'label' => __('Delete Submission'),
+            'on_click' => 'deleteConfirm(\'' . __('Are you sure you want to delete this Submission record ?') . '\', \'' . $this->getDeleteUrl() . '\')',
             'class' => 'delete',
             'sort_order' => 20
         ];
