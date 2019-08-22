@@ -1,8 +1,13 @@
 <?php
 namespace GiangVu\Polls\Block;
 
-class FrontendPollRendering extends \Magento\Framework\View\Element\Template
+use Magento\Framework\View\Element\Template;
+use Magento\Widget\Block\BlockInterface; 
+
+class FrontendPollRendering extends Template implements BlockInterface
 {
+    protected $_template = "widget/polls.phtml";
+    
     protected $_session;
     protected $_pollRepository;
     protected $_answerRepository;

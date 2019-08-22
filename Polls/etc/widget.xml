@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?> 
 <widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
-	<widget id="giangvu_pollswidget" class="GiangVu\Polls\Block\Widget\PollsWidget">
+	<widget id="giangvu_pollswidget" class="GiangVu\Polls\Block\FrontendPollRendering">
 		<label>Polls</label>
-		<description>Custom Polls Widget</description>
+		<description>GiangVu's Custom Polls Widget</description>
 		<parameters>
-			<parameter name="title" xsi:type="text" required="false" visible="true">
+			<parameter name="title" xsi:type="text" visible="true">
 				<label translate="true">Poll</label>
 			</parameter>
 			<!--

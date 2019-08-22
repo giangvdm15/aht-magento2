@@ -110,7 +110,7 @@ if ($block->isCustomerLoggedIn()):
                         				        $block->getSubmissionsByPollIdAndAnswerId($pollId, $ansId)
                         				    );
                         				    // calculate and display result
-                        				    echo ($totalCurrentAnswer / $totalSubmission * 100) . "%";
+                        				    echo round(($totalCurrentAnswer / $totalSubmission * 100), 2) . "%";
                         				?>
                         			</strong>
                       			</label>
