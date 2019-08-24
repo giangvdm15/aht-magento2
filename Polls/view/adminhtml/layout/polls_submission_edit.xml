@@ -1,6 +1,13 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">  
-    <referenceBlock name="content">
-        <uiComponent name="submission_U_form" />
-    </referenceBlock>
+    <head>
+        <title>
+            Edit a Submission
+        </title>
+    </head>
+    <body>
+        <referenceBlock name="content">
+            <uiComponent name="submission_U_form" />
+        </referenceBlock>
+    </body>
 </page>

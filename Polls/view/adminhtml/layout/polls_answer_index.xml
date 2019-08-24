@@ -1,7 +1,13 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-	<referenceBlock name="content">
-		<!-- <uiComponent name="poll_dropdown" /> -->
-	    <uiComponent name="answer_listing" />
-	</referenceBlock>
+	<head>
+        <title>
+            All Answer
+        </title>
+    </head>
+	<body>
+		<referenceBlock name="content">
+			<uiComponent name="answer_listing" />
+		</referenceBlock>
+	</body>
 </page>
