@@ -51,18 +51,10 @@
             </argument>
         </argument>
     </dataSource>
-    
-    <!--
-    <dataSource name="all_poll_data_source">
-        <argument name="dataProvider" xsi:type="configurableObject">
-            <argument name="class" xsi:type="string">PollsGridDataProvider</argument>
-            <argument name="name" xsi:type="string">all_poll_data_source</argument>
-            <argument name="primaryFieldName" xsi:type="string">poll_id</argument>
-            <argument name="requestFieldName" xsi:type="string">id</argument>
-            
-        </argument>
-    </dataSource>
-    -->
+
+    <listingToolbar name="listing_top">
+        <filters name="listing_filters"/>
+    </listingToolbar>
 
     <columns name="answers_columns">
         <argument name="data" xsi:type="array">
@@ -81,6 +73,7 @@
                 </item>
             </item>
         </argument>
+        
         <selectionsColumn name="ids">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -92,7 +85,6 @@
         <column name="answer_id">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="filter" xsi:type="string">textRange</item>
                     <item name="sorting" xsi:type="string">desc</item>
                     <item name="label" xsi:type="string" translate="true">ID</item>
                 </item>
@@ -109,26 +101,19 @@
                     <item name="dataScope" xsi:type="string">name</item>
                     <item name="filter" xsi:type="string">text</item>
                     <item name="label" xsi:type="string" translate="true">Answer content</item>
-                    <item name="validation" xsi:type="array">
-                        <item name="required-entry" xsi:type="boolean">true</item>
-                    </item>
                 </item>
             </argument>
         </column>
         
-         <column name="poll_id">
+         <column name="poll_id" class="GiangVu\Polls\Ui\Component\Listing\Columns\PollTitle">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">select</item>
                     <item name="visible" xsi:type="boolean">true</item>
-                    <item name="dataType" xsi:type="string">text</item>
-                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="dataType" xsi:type="string">select</item>
                     <item name="source" xsi:type="string">answer</item>
                     <item name="dataScope" xsi:type="string">name</item>
-                    <item name="filter" xsi:type="string">text</item>
                     <item name="label" xsi:type="string" translate="true">Poll</item>
-                    <item name="validation" xsi:type="array">
-                        <item name="required-entry" xsi:type="boolean">true</item>
-                    </item>
                 </item>
             </argument>
         </column>
@@ -136,7 +121,6 @@
         <column name="created_at" class="Magento\Ui\Component\Listing\Columns\Date">
     		<argument name="data" xsi:type="array">
 		        <item name="config" xsi:type="array">
-		            <item name="filter" xsi:type="string">dateRange</item>
 		            <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/date</item>
 		            <item name="dataType" xsi:type="string">date</item>
 		            <item name="label" xsi:type="string" translate="true">Created At</item>
@@ -148,7 +132,6 @@
         <column name="updated_at" class="Magento\Ui\Component\Listing\Columns\Date">
     		<argument name="data" xsi:type="array">
 		        <item name="config" xsi:type="array">
-		            <item name="filter" xsi:type="string">dateRange</item>
 		            <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/date</item>
 		            <item name="dataType" xsi:type="string">date</item>
 		            <item name="label" xsi:type="string" translate="true">Updated At</item>

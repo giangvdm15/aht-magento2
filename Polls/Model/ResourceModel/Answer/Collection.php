@@ -16,4 +16,15 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
     {
         $this->_init('GiangVu\Polls\Model\Answer', 'GiangVu\Polls\Model\ResourceModel\Answer');
     }
+
+    // protected function _initSelect()
+    // {
+    //     parent::_initSelect();
+
+    //     $this->getSelect()->joinLeft(
+    //         ['poll_table' => $this->getTable('giangvu_poll_entity')],
+    //         'main_table.poll_id = poll_table.poll_id',
+    //         ['poll_title' => 'poll_table.poll_title']
+    //     );
+    // }
 }
