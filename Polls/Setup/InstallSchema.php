@@ -1,5 +1,5 @@
 <?php
-namespace AHT\Blog\Setup;
+namespace GiangVu\Polls\Setup;
 
 class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
 {
