@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <fieldset name="customer">
+        <field name="customer_activated">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="array">
+                    <item name="1" xsi:type="array">
+                        <item name="value" xsi:type="number">1</item>
+                        <item name="label" xsi:type="string" translate="true">Activated</item>
+                    </item>
+                    <item name="0" xsi:type="array">
+                        <item name="value" xsi:type="number">0</item>
+                        <item name="label" xsi:type="string" translate="true">Deactivated</item>
+                    </item>
+                </item>
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">Customer Activated</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">customer</item>
+                    <!-- <item name="sortOrder" xsi:type="number">150</item> -->
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+    </fieldset>
+</form>
